@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3>{{ _("Users") }}</h3>
+
+<table class="table table-bordered">
+  <tr>
+    <th>{{ _("ID") }}</th>
+    <th>{{ _("Name") }}</th>
+    <th>{{ _("Surname") }}</th>
+    <th>{{ _("E-mail") }}</th>
+    <th>{{ _("Role") }}</th>
+  </tr>
+
+  {% for u in users %}
+  <tr>
+    <td>{{ u.id }}</td>
+    <td>{{ u.first_name }}</td>
+    <td>{{ u.last_name }}</td>
+    <td>
+      <a href="{{ url_for('views.admin_user_profile', user_id=u.id) }}">
+        {{ u.email }}
+      </a>
+    </td>
+    <td>
+      {% if u.is_admin %}{{ _("Admin") }}{% else %}{{ _("User") }}{% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}

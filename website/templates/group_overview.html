@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block title %}{{ _("Group overview") }}{% endblock %}
+{% block content %}
+
+<h3 class="mb-3">{{ _("Group") }}: {{ group.name }}</h3>
+
+<!-- Tabs -->
+<ul class="nav nav-tabs mb-3">
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('views.dashboard') }}">{{ _("My overview") }}</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="#">{{ _("Group overview") }}</a>
+  </li>
+</ul>
+
+<!-- Invitation accept/decline -->
+{% if invite and invite.status == "pending" and not current_user.group_budget_id %}
+<div class="alert alert-info">
+  <p class="mb-2">{{ _("You have been invited to join this group.") }}</p>
+  <form method="post" action="{{ url_for('views.accept_invite', invite_id=invite.id) }}" class="d-inline">
+    <button class="btn btn-success btn-sm">{{ _("Accept") }}</button>
+  </form>
+  <form method="post" action="{{ url_for('views.decline_invite', invite_id=invite.id) }}" class="d-inline">
+    <button class="btn btn-danger btn-sm">{{ _("Decline") }}</button>
+  </form>
+</div>
+{% endif %}
+
+{% if current_user.group_budget_id %}
+<div class="card mb-3">
+  <div class="card-body">
+    <h4 class="mb-2">{{ _("Actions") }}</h4>
+    {% if is_owner %}
+    <form method="post" action="{{ url_for('views.edit_group', group_id=group.id) }}" class="form-inline mb-2">
+      <input class="form-control mr-2" name="name" value="{{ group.name }}">
+      <button class="btn btn-primary btn-sm">{{ _("Rename") }}</button>
+    </form>
+
+    <form method="post" action="{{ url_for('views.delete_group', group_id=group.id) }}"
+          onsubmit="return confirm('Delete group?');">
+      <button class="btn btn-danger btn-sm">{{ _("Delete group") }}</button>
+    </form>
+    {% endif %}
+
+    {% if not is_owner and current_user.group_budget_id %}
+    <form method="post" action="{{ url_for('views.leave_group') }}" class="mt-2">
+      <button class="btn btn-outline-secondary btn-sm">{{ _("Leave group") }}</button>
+    </form>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Totals -->
+<div class="row mb-4">
+  <div class="col-md-4">
+    <div class="card bg-success text-white">
+      <div class="card-body">
+        <h5>{{ _("Total income") }}</h5>
+        <p>{{ total_income }} €</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card bg-danger text-white">
+      <div class="card-body">
+        <h5>{{ _("Total spent") }}</h5>
+        <p>{{ total_spent }} €</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card bg-primary text-white">
+      <div class="card-body">
+        <h5>{{ _("Total balance") }}</h5>
+        <p>{{ total_remaining }} €</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Group chart -->
+<div class="card mb-4">
+  <div class="card-body box">
+    <h5>{{ _("Group category breakdown (this month)") }}</h5>
+    <div style="max-width: 420px;">
+      <canvas id="groupChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- Per-user charts -->
+<h4 class="mb-2">{{ _("Charts per member") }}</h4>
+<div class="row">
+  {% for user in per_user %}
+  <div class="col-md-6 mb-3">
+    <div class="card">
+      <div class="card-body box" style="max-width: 320px;">
+        <h6>{{ user.first_name }}</h6>
+        <canvas id="chart-user-{{ user.user_id }}"></canvas>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const groupData = {{ group_chart | tojson }};
+new Chart(document.getElementById("groupChart"), {
+  type: "pie",
+  data: {
+    labels: Object.keys(groupData),
+    datasets: [{ data: Object.values(groupData) }]
+  }
+});
+
+const perUser = {{ per_user | tojson }};
+for (const user of perUser) {
+  const el = document.getElementById(`chart-user-${user.user_id}`);
+  if (!el) continue;
+  new Chart(el, {
+    type: "pie",
+    data: {
+      labels: Object.keys(user.chart),
+      datasets: [{ data: Object.values(user.chart) }]
+    }
+  });
+}
+</script>
+{% endif %}
+
+{% endblock %}

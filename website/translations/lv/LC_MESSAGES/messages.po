@@ -1,0 +1,580 @@
+# Latvian translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-01-07 20:24+0200\n"
+"PO-Revision-Date: 2025-12-31 15:45+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: lv\n"
+"Language-Team: lv <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 :"
+" 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: auth.py:20
+msgid "Password field is mandatory"
+msgstr "Paroles lauks ir obligāts"
+
+#: auth.py:22 views.py:114
+msgid "Password must be at least 8 characters long"
+msgstr "Parolei jābūt vismaz 8 simbolus garai"
+
+#: auth.py:24
+msgid "Password must contain an uppercase letter"
+msgstr "Parolei jāietver vismaz viens lielais burts"
+
+#: auth.py:26
+msgid "Password must contain a lowercase letter"
+msgstr "Parolei jāietver vismaz viens mazais burts"
+
+#: auth.py:28
+msgid "Password must contain at least 1 number"
+msgstr "Parolei jāietver vismaz viens cipars"
+
+#: auth.py:30
+msgid "Password must contain at least 1 special character"
+msgstr "Parolei jābūt vismaz 8 simbolus garai"
+
+#: auth.py:37
+msgid "E-mail field is mandatory"
+msgstr "E-pasta lauks ir obligāts"
+
+#: auth.py:39
+msgid "Invalid e-mail format. E-mail must contain symbols @ and ."
+msgstr "Nepareizs e-pasta formāts. E-pastam jāietver simbolus @ un ."
+
+#: auth.py:46 auth.py:53
+msgid "First name field is mandatory"
+msgstr "Vārda lauks ir obligāts"
+
+#: auth.py:73 auth.py:188 views.py:110
+msgid "Passwords do not match"
+msgstr "Paroles nesakrīt"
+
+#: auth.py:75
+msgid "User with this email already exists"
+msgstr "Lietotājs ar šādu e-pastu jau eksistē"
+
+#: auth.py:97
+msgid "Registration successful"
+msgstr "Reģistrēšanās veiksmīga"
+
+#: auth.py:115
+msgid "Invalid email or password"
+msgstr "Nepareizs e-pasts vai parole"
+
+#: auth.py:122
+#, python-format
+msgid "Account is deactivated. Please contact administrator: %(email)s"
+msgstr "Konts ir deaktivizēts. Lūdzu, sazinieties ar administratoru: %(email)s"
+
+#: auth.py:157
+msgid "Password reset"
+msgstr "Paroles atjaunošana"
+
+#: auth.py:157
+msgid "To reset your password, open this link:"
+msgstr "Lai atjaunotu paroli, atveriet šo saiti:"
+
+#: auth.py:160
+msgid "If the email exists, a reset link has been sent."
+msgstr "Ja e-pasts eksistē, paroles atjaunošanas saite tika nosūtīta uz e-pastu."
+
+#: auth.py:172
+msgid "The reset link is invalid or expired."
+msgstr "Atjaunošanas saite nav derīga vai ir beigusies."
+
+#: auth.py:196
+msgid "Password successfully changed"
+msgstr "Parole veiksmīgi nomainīta"
+
+#: auth.py:206
+msgid "You have been logged out"
+msgstr "Jūs esat izrakstījies no sistēmas"
+
+#: views.py:38
+msgid "Expense added successfully"
+msgstr "Izdevumi veiksmīgi pievienoti"
+
+#: views.py:59
+msgid "Expense updated"
+msgstr "Izdevumi atjaunināti"
+
+#: views.py:106
+msgid "Old password is incorrect"
+msgstr "Vecā parole ir nepareiza"
+
+#: views.py:120
+msgid "Profile updated successfully"
+msgstr "Profils veiksmīgi atjaunināts"
+
+#: views.py:145
+msgid "User updated successfully"
+msgstr "Lietotāja dati veiksmīgi atjaunināti"
+
+#: views.py:183
+msgid "You don't have access to this page"
+msgstr "Jums nav piekļuves šai lapai"
+
+#: views.py:194
+msgid "Category added"
+msgstr "Kategorija pievienota"
+
+#: views.py:196
+msgid "Category already exists"
+msgstr "Šāda kategorija jau eksistē"
+
+#: views.py:218
+msgid "Category updated"
+msgstr "Kategorija atjaunota"
+
+#: views.py:232
+msgid "Category is used and cannot be deleted"
+msgstr "Šī kategorija tiek izmantota. Izdzēst nevar"
+
+#: views.py:238
+msgid "Category deleted"
+msgstr "Kategorija izdzēsta"
+
+#: views.py:254
+msgid "Group invitation"
+msgstr "Grupas uzaicinājums"
+
+#: views.py:292 views.py:421
+msgid "Unknown"
+msgstr "Nezināms"
+
+#: views.py:322
+msgid "Invalid income format"
+msgstr "Nederīgs ienākumu formāts"
+
+#: views.py:327
+msgid "Income must be greater or equal to 0"
+msgstr "Ienākumiem jābūt vienādiem vai lielākiem par 0"
+
+#: views.py:332
+msgid "Income updated successfully"
+msgstr "Ienākumi veiksmīgi atjaunināti"
+
+#: views.py:368
+msgid "Group created"
+msgstr "Grupa izveidota"
+
+#: views.py:384
+msgid "You are not in a group"
+msgstr "Jūs neesat grupā"
+
+#: views.py:470
+msgid "You joined the group"
+msgstr "Jūs pievienojāties grupai"
+
+#: views.py:483
+msgid "Invitation declined"
+msgstr "Uzaicinājums noraidīts"
+
+#: views.py:497
+msgid "Group name is required"
+msgstr "grupas nosaukums ir obligāts"
+
+#: views.py:502
+msgid "Group updated"
+msgstr "Grupa atjaunināta"
+
+#: views.py:524
+msgid "Group deleted"
+msgstr "Grupa izdzēsta"
+
+#: views.py:537
+msgid "Owner cannot leave the group. Delete it or transfer ownership."
+msgstr "Grupas īpašnieks nevar pamest grupu. Izdzēs grupu, vai nomaini īpašnieku."
+
+#: views.py:542
+msgid "You left the group"
+msgstr "Tu pameti grupu"
+
+#: templates/admin_audit.html:5 templates/base.html:85
+msgid "Audit logs"
+msgstr "Audita žurnāls"
+
+#: templates/admin_audit.html:9 templates/expenses.html:28
+msgid "Date"
+msgstr "Datums"
+
+#: templates/admin_audit.html:10
+msgid "Action"
+msgstr "Darbības"
+
+#: templates/admin_audit.html:11 templates/admin_users.html:26
+msgid "User"
+msgstr "Lietotājs"
+
+#: templates/admin_audit.html:12
+msgid "Detalization"
+msgstr "Detalizācija"
+
+#: templates/admin_categories.html:4 templates/base.html:82
+msgid "Categories"
+msgstr "Kategorijas"
+
+#: templates/admin_categories.html:12
+msgid "New category"
+msgstr "Jauna kategorija"
+
+#: templates/admin_categories.html:16
+msgid "Add"
+msgstr "Pievienot"
+
+#: templates/admin_categories.html:25 templates/admin_users.html:9
+msgid "Name"
+msgstr "Vārds"
+
+#: templates/admin_categories.html:26
+msgid "Used in expenses (count)"
+msgstr "Izmantota izdevumos (skaits)"
+
+#: templates/admin_categories.html:27 templates/expenses.html:30
+#: templates/group_overview.html:33
+msgid "Actions"
+msgstr "Darbības"
+
+#: templates/admin_categories.html:69
+msgid "Category is used"
+msgstr "Kategorija tiek izmantota"
+
+#: templates/admin_users.html:4 templates/base.html:79
+msgid "Users"
+msgstr "Lietotāji"
+
+#: templates/admin_users.html:8
+msgid "ID"
+msgstr "ID"
+
+#: templates/admin_users.html:10
+msgid "Surname"
+msgstr "Uzvārds"
+
+#: templates/admin_users.html:11 templates/forgot_password.html:10
+#: templates/login.html:9 templates/profile.html:21 templates/sign_up.html:9
+msgid "E-mail"
+msgstr "E-pasts"
+
+#: templates/admin_users.html:12
+msgid "Role"
+msgstr "Loma"
+
+#: templates/admin_users.html:26 templates/profile.html:37
+msgid "Admin"
+msgstr "Administrators"
+
+#: templates/base.html:14 templates/base.html:54
+msgid "Home"
+msgstr "Sākums"
+
+#: templates/base.html:19
+msgid "Finance Management"
+msgstr "Finanšu pārvaldība"
+
+#: templates/base.html:34 templates/base.html:47
+msgid "Latvian"
+msgstr "Latviešu"
+
+#: templates/base.html:36 templates/base.html:43
+msgid "English"
+msgstr "Angļu"
+
+#: templates/base.html:58 templates/expenses.html:2 templates/expenses.html:16
+msgid "Expenses"
+msgstr "Izdevumi"
+
+#: templates/base.html:62
+msgid "Profile"
+msgstr "Profils"
+
+#: templates/base.html:74
+msgid "Admin panel"
+msgstr "Administratora panelis"
+
+#: templates/base.html:92
+msgid "Logout"
+msgstr "Izrakstīties"
+
+#: templates/base.html:97 templates/login.html:2 templates/login.html:6
+#: templates/login.html:23
+msgid "Login"
+msgstr "Pieteikties"
+
+#: templates/base.html:100 templates/sign_up.html:2 templates/sign_up.html:6
+#: templates/sign_up.html:33
+msgid "Sign up"
+msgstr "Reģistrēties"
+
+#: templates/dashboard.html:2 templates/dashboard.html:5
+msgid "Dashboard"
+msgstr "Informācijas panelis"
+
+#: templates/dashboard.html:11 templates/group_overview.html:10
+msgid "My overview"
+msgstr "Mans pārskats"
+
+#: templates/dashboard.html:18 templates/group_overview.html:2
+#: templates/group_overview.html:13
+msgid "Group overview"
+msgstr "Grupas pārskats"
+
+#: templates/dashboard.html:29
+msgid "You have been invited to a group."
+msgstr "Jūs esiet uzaicināts finanšu grupā"
+
+#: templates/dashboard.html:33
+msgid "Open invitation"
+msgstr "Atvērt uzaicinājumu"
+
+#: templates/dashboard.html:45 templates/dashboard.html:112
+msgid "Create group"
+msgstr "Izveidot grupu"
+
+#: templates/dashboard.html:53
+msgid "Change monthly income"
+msgstr "Atjaunot mēneša ienākumus"
+
+#: templates/dashboard.html:61 templates/profile.html:80
+msgid "Save"
+msgstr "Saglabāt"
+
+#: templates/dashboard.html:71
+msgid "Monthly income"
+msgstr "Mēneša ienākumi"
+
+#: templates/dashboard.html:80
+msgid "Spent"
+msgstr "Iztērēts"
+
+#: templates/dashboard.html:89
+msgid "Balance"
+msgstr "Atlikums"
+
+#: templates/dashboard.html:99
+msgid "Category breakdown (this month)"
+msgstr "Kategoriju sadalījums (šomēnes)"
+
+#: templates/dashboard.html:120
+msgid "Group name"
+msgstr "Grupas nosaukums"
+
+#: templates/dashboard.html:125
+msgid "Invite user email (optional)"
+msgstr "Uzaicināmā dalībnieka e-pasts"
+
+#: templates/dashboard.html:132
+msgid "Cancel"
+msgstr "Atlikt"
+
+#: templates/dashboard.html:135
+msgid "Create"
+msgstr "Izveidot"
+
+#: templates/expenses.html:6
+msgid "Select by month"
+msgstr "Atlasīt pēc mēneša"
+
+#: templates/expenses.html:11
+msgid "Select"
+msgstr "Atlasīt"
+
+#: templates/expenses.html:13
+msgid "Clear"
+msgstr "Notīrīt"
+
+#: templates/expenses.html:19
+msgid "Add expenses"
+msgstr "Pievienot izdevumus"
+
+#: templates/expenses.html:26
+msgid "Sum (EUR)"
+msgstr "Summa (EUR)"
+
+#: templates/expenses.html:27
+msgid "Category"
+msgstr "Kategorija"
+
+#: templates/expenses.html:29
+msgid "Description"
+msgstr "Apraksts"
+
+#: templates/forgot_password.html:2
+msgid "Forgot password"
+msgstr "Aizmirsu paroli"
+
+#: templates/forgot_password.html:6 templates/login.html:19
+msgid "Forgot password?"
+msgstr "Aizmirsāt paroli?"
+
+#: templates/forgot_password.html:7
+msgid "Enter your email address to which a password reset link will be sent."
+msgstr "Ievadiet e-pastu, uz kuru tiks nosūtīta paroles atjaunošanas saite."
+
+#: templates/forgot_password.html:15
+msgid "Send"
+msgstr "Nosūtīt"
+
+#: templates/group_overview.html:5
+msgid "Group"
+msgstr "Grupa"
+
+#: templates/group_overview.html:20
+msgid "You have been invited to join this group."
+msgstr "Jūs esiet uzaicināts pievienoties finanšu grupai"
+
+#: templates/group_overview.html:22
+msgid "Accept"
+msgstr "Akceptēt"
+
+#: templates/group_overview.html:25
+msgid "Decline"
+msgstr "Noraidīt"
+
+#: templates/group_overview.html:37
+msgid "Rename"
+msgstr "Pārsaukt"
+
+#: templates/group_overview.html:42
+msgid "Delete group"
+msgstr "Dzēst grupu"
+
+#: templates/group_overview.html:48
+msgid "Leave group"
+msgstr "Pamest grupu"
+
+#: templates/group_overview.html:59
+msgid "Total income"
+msgstr "Kopējie mēneša ienākumi"
+
+#: templates/group_overview.html:68
+msgid "Total spent"
+msgstr "Iztērēts (kopā)"
+
+#: templates/group_overview.html:77
+msgid "Total balance"
+msgstr "Atlikums (kopā)"
+
+#: templates/group_overview.html:87
+msgid "Group category breakdown (this month)"
+msgstr "Kategoriju sadalījums (šomēnes)"
+
+#: templates/group_overview.html:95
+msgid "Charts per member"
+msgstr "Grupas locekļu grafiki"
+
+#: templates/login.html:14 templates/sign_up.html:24
+msgid "Password"
+msgstr "Parole"
+
+#: templates/profile.html:4
+msgid "User profile"
+msgstr "Lietotāja profils"
+
+#: templates/profile.html:9 templates/sign_up.html:14
+msgid "First name"
+msgstr "Vārds"
+
+#: templates/profile.html:15 templates/sign_up.html:19
+msgid "Last name"
+msgstr "Uzvārds"
+
+#: templates/profile.html:28
+msgid "Admin settings"
+msgstr "Administratora iestatījumi"
+
+#: templates/profile.html:48
+msgid "Active user"
+msgstr "Aktīvs lietotājs"
+
+#: templates/profile.html:55
+msgid "Change password"
+msgstr "Mainīt paroli"
+
+#: templates/profile.html:58
+msgid "Old password"
+msgstr "Vecā parole"
+
+#: templates/profile.html:65 templates/reset_password.html:9
+msgid "New password"
+msgstr "Jaunā parole"
+
+#: templates/profile.html:72
+msgid "New password again"
+msgstr "Jaunā parole atkārtoti"
+
+#: templates/profile.html:86
+msgid "Back"
+msgstr "Atpakaļ"
+
+#: templates/reset_password.html:2 templates/reset_password.html:6
+#: templates/reset_password.html:19
+msgid "Reset password"
+msgstr "Atjaunot paroli"
+
+#: templates/reset_password.html:14
+msgid "New password (again)"
+msgstr "Jaunā parole (atkārtoti)"
+
+#: templates/sign_up.html:29
+msgid "Password (again)"
+msgstr "Parole (atkārtoti)"
+
+msgid "Food"
+msgstr "Ēdiens"
+
+msgid "Groceries"
+msgstr "Produkti"
+
+msgid "Transport"
+msgstr "Transports"
+
+msgid "Rent"
+msgstr "Īre"
+
+msgid "Utilities"
+msgstr "Komunālie maksājumi"
+
+msgid "Entertainment"
+msgstr "Izklaide"
+
+msgid "Travel"
+msgstr "Ceļojumi"
+
+msgid "Wellbeing"
+msgstr "Labsajūta"
+
+msgid "Household"
+msgstr "Saimniecības preces"
+
+msgid "Health"
+msgstr "Veselība"
+
+msgid "Pets"
+msgstr "Dzīvniekiem"
+
+msgid "Children"
+msgstr "Bērniem"
+
+msgid "Gifts"
+msgstr "Dāvanas"
+
+msgid "Savings"
+msgstr "Iekrājumi"
+
+msgid "Other"
+msgstr "Cits"
+
+msgid "Account created successfully"
+msgstr "Konts veiksmīgi izveidots"
+

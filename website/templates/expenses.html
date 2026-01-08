@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block title %}{{ _("Expenses") }}{% endblock %}
+
+{% block content %}
+<form method="get" class="form-inline mb-3">
+  <label class="mr-2">{{ _("Select by month") }}</label>
+  <input type="month"
+         name="month"
+         class="form-control mr-2"
+         value="{{ selected_month or '' }}">
+  <button class="btn btn-outline-primary btn-sm">{{ _("Select") }}</button>
+  <a href="{{ url_for('views.expenses_view') }}"
+     class="btn btn-outline-secondary btn-sm ml-2">{{ _("Clear") }}</a>
+</form>
+<div class="d-flex justify-content-between mb-3">
+  <h3>{{ _("Expenses") }}</h3>
+  <button class="btn btn-primary btn-sm" onclick="showNewRow()">
+    <i class="bi bi-plus-lg"></i>
+    {{ _("Add expenses") }}
+  </button>
+</div>
+
+<table class="table table-bordered">
+<thead class="thead-dark">
+<tr>
+  <th>{{ _("Sum (EUR)") }}</th>
+  <th>{{ _("Category") }}</th>
+  <th>{{ _("Date") }}</th>
+  <th>{{ _("Description") }}</th>
+  <th>{{ _("Actions") }}</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for e in expenses %}
+<tr id="row-{{ e.id }}">
+<form method="post" action="{{ url_for('views.edit_expense', expense_id=e.id) }}">
+  <td><input name="amount" class="form-control form-control-sm"
+             value="{{ e.amount }}" disabled></td>
+
+  <td>
+    <select name="category_id" class="form-control form-control-sm" disabled>
+      {% for c in categories %}
+        <option value="{{ c.id }}"
+          {% if c.id == e.category_id %}selected{% endif %}>
+          {{ _(c.name) }}
+        </option>
+      {% endfor %}
+    </select>
+  </td>
+
+  <td>
+    <input type="date" name="expense_date"
+           class="form-control form-control-sm"
+           value="{{ e.expense_date }}" disabled>
+  </td>
+
+  <td>
+    <input name="description"
+           class="form-control form-control-sm"
+           value="{{ e.description }}" disabled>
+  </td>
+
+  <td class="text-center">
+    <button type="button"
+            id="edit-{{ e.id }}"
+            class="btn btn-warning btn-sm"
+            onclick="enableEdit({{ e.id }})">
+        <i class="bi bi-pencil-fill" style=" color: #E64C00;"></i>
+    </button>
+
+    <button id="save-{{ e.id }}"
+            class="btn btn-success btn-sm d-none">
+        <i class="bi bi-floppy2" ></i>
+    </button>
+</form>
+
+    <button class="btn btn-danger btn-sm"
+            onclick="deleteExpense({{ e.id }})">
+        <i class="bi bi-trash3-fill" style=" color: gainsboro;"></i>
+    </button>
+  </td>
+</tr>
+{% endfor %}
+
+<tr id="new-expense-row" class="table-warning d-none">
+<form method="post" action="{{ url_for('views.expenses_view') }}">
+  <td><input name="amount" class="form-control form-control-sm" required></td>
+  <td>
+    <select name="category_id" class="form-control form-control-sm">
+      {% for c in categories %}
+        <option value="{{ c.id }}">{{ _(c.name) }}</option>
+      {% endfor %}
+    </select>
+  </td>
+  <td><input type="date" name="expense_date" class="form-control form-control-sm" required></td>
+  <td><input name="description" class="form-control form-control-sm"></td>
+  <td class="text-center">
+    <button class="btn btn-success btn-sm">
+        <i class="bi bi-floppy2" ></i>
+    </button>
+    <button type="button" class="btn btn-danger btn-sm"
+            onclick="cancelNewRow()">
+        <i class="bi bi-x-lg"></i>
+    </button>
+  </td>
+</form>
+</tr>
+
+</tbody>
+</table>
+{% endblock %}

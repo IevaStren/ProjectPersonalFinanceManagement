@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% block title %}{{ _("Dashboard") }}{% endblock %}
+{% block content %}
+
+<h3 class="mb-4">{{ _("Dashboard") }}</h3>
+
+<!-- Tabs -->
+<ul class="nav nav-tabs mb-3">
+  <li class="nav-item">
+    <a class="nav-link active" href="{{ url_for('views.dashboard') }}">
+      {{ _("My overview") }}
+    </a>
+  </li>
+
+  {% if group %}
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('views.group_overview') }}">
+      {{ _("Group overview") }}
+    </a>
+  </li>
+  {% endif %}
+</ul>
+
+<!-- Invitations notification -->
+{% if invitations and not group %}
+  {% for inv in invitations %}
+  <div class="alert alert-info d-flex justify-content-between align-items-center">
+    <div>
+      {{ _("You have been invited to a group.") }}
+    </div>
+    <a class="btn btn-sm btn-primary"
+       href="{{ url_for('views.group_overview', invite_id=inv.id) }}">
+      {{ _("Open invitation") }}
+    </a>
+  </div>
+  {% endfor %}
+{% endif %}
+
+<!-- Create group button under income -->
+{% if not group %}
+  <div class="create-group" style="padding-bottom: 30px;">
+    <button class="btn btn-primary mt-3" 
+          data-toggle="modal"
+          data-target="#createGroupModal">
+    {{ _("Create group") }}
+    </button>
+  </div>
+{% endif %}
+
+<!-- Change monthly income -->
+<div class="card mb-3">
+  <div class="card-body">
+    <h5>{{ _("Change monthly income") }}</h5>
+    <form method="post" action="{{ url_for('views.update_montly_income') }}" class="form-inline">
+      <input type="text"
+             name="monthly_income"
+             class="form-control mr-2"
+             value="{{ personal_income }}"
+             placeholder="0,00"
+             required>
+      <button class="btn btn-success">{{ _("Save") }}</button>
+    </form>
+  </div>
+</div>
+
+<!-- 3 cards -->
+<div class="row mb-4 box">
+  <div class="col-md-4">
+    <div class="card text-white bg-success">
+      <div class="card-body">
+        <h5 class="card-title">{{ _("Monthly income") }}</h5>
+        <p class="card-text">{{ personal_income }} €</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card text-white bg-danger">
+      <div class="card-body">
+        <h5 class="card-title">{{ _("Spent") }}</h5>
+        <p class="card-text">{{ personal_spent }} €</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card text-white bg-primary">
+      <div class="card-body">
+        <h5 class="card-title">{{ _("Balance") }}</h5>
+        <p class="card-text">{{ personal_remaining }} €</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Personal chart -->
+<div class="card" >
+  <div class="card-body box">
+    <h5>{{ _("Category breakdown (this month)") }}</h5>
+    <div style="max-width: 420px;">
+      <canvas id="personalChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- Create group modal -->
+<div class="modal fade" id="createGroupModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <form method="post" action="{{ url_for('views.create_group') }}">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ _("Create group") }}</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div class="form-group">
+            <label>{{ _("Group name") }}</label>
+            <input class="form-control" name="name" required>
+          </div>
+
+          <div class="form-group">
+            <label>{{ _("Invite user email (optional)") }}</label>
+            <input class="form-control" name="invite_email" type="email" placeholder="test@test.lv">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            {{ _("Cancel") }}
+          </button>
+          <button class="btn btn-success">
+            {{ _("Create") }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const personalData = {{ personal_chart | tojson }};
+new Chart(document.getElementById("personalChart"), {
+  type: "pie",
+  data: {
+    labels: Object.keys(personalData),
+    datasets: [{
+      data: Object.values(personalData)
+    }]
+  }
+});
+</script>
+
+{% endblock %}

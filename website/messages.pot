@@ -1,0 +1,530 @@
+# Translations template for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-01-07 20:24+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: auth.py:20
+msgid "Password field is mandatory"
+msgstr ""
+
+#: auth.py:22 views.py:114
+msgid "Password must be at least 8 characters long"
+msgstr ""
+
+#: auth.py:24
+msgid "Password must contain an uppercase letter"
+msgstr ""
+
+#: auth.py:26
+msgid "Password must contain a lowercase letter"
+msgstr ""
+
+#: auth.py:28
+msgid "Password must contain at least 1 number"
+msgstr ""
+
+#: auth.py:30
+msgid "Password must contain at least 1 special character"
+msgstr ""
+
+#: auth.py:37
+msgid "E-mail field is mandatory"
+msgstr ""
+
+#: auth.py:39
+msgid "Invalid e-mail format. E-mail must contain symbols @ and ."
+msgstr ""
+
+#: auth.py:46 auth.py:53
+msgid "First name field is mandatory"
+msgstr ""
+
+#: auth.py:73 auth.py:188 views.py:110
+msgid "Passwords do not match"
+msgstr ""
+
+#: auth.py:75
+msgid "User with this email already exists"
+msgstr ""
+
+#: auth.py:97
+msgid "Registration successful"
+msgstr ""
+
+#: auth.py:115
+msgid "Invalid email or password"
+msgstr ""
+
+#: auth.py:122
+#, python-format
+msgid "Account is deactivated. Please contact administrator: %(email)s"
+msgstr ""
+
+#: auth.py:157
+msgid "Password reset"
+msgstr ""
+
+#: auth.py:157
+msgid "To reset your password, open this link:"
+msgstr ""
+
+#: auth.py:160
+msgid "If the email exists, a reset link has been sent."
+msgstr ""
+
+#: auth.py:172
+msgid "The reset link is invalid or expired."
+msgstr ""
+
+#: auth.py:196
+msgid "Password successfully changed"
+msgstr ""
+
+#: auth.py:206
+msgid "You have been logged out"
+msgstr ""
+
+#: views.py:38
+msgid "Expense added successfully"
+msgstr ""
+
+#: views.py:59
+msgid "Expense updated"
+msgstr ""
+
+#: views.py:106
+msgid "Old password is incorrect"
+msgstr ""
+
+#: views.py:120
+msgid "Profile updated successfully"
+msgstr ""
+
+#: views.py:145
+msgid "User updated successfully"
+msgstr ""
+
+#: views.py:183
+msgid "You don't have access to this page"
+msgstr ""
+
+#: views.py:194
+msgid "Category added"
+msgstr ""
+
+#: views.py:196
+msgid "Category already exists"
+msgstr ""
+
+#: views.py:218
+msgid "Category updated"
+msgstr ""
+
+#: views.py:232
+msgid "Category is used and cannot be deleted"
+msgstr ""
+
+#: views.py:238
+msgid "Category deleted"
+msgstr ""
+
+#: views.py:254
+msgid "Group invitation"
+msgstr ""
+
+#: views.py:292 views.py:421
+msgid "Unknown"
+msgstr ""
+
+#: views.py:322
+msgid "Invalid income format"
+msgstr ""
+
+#: views.py:327
+msgid "Income must be greater or equal to 0"
+msgstr ""
+
+#: views.py:332
+msgid "Income updated successfully"
+msgstr ""
+
+#: views.py:368
+msgid "Group created"
+msgstr ""
+
+#: views.py:384
+msgid "You are not in a group"
+msgstr ""
+
+#: views.py:470
+msgid "You joined the group"
+msgstr ""
+
+#: views.py:483
+msgid "Invitation declined"
+msgstr ""
+
+#: views.py:497
+msgid "Group name is required"
+msgstr ""
+
+#: views.py:502
+msgid "Group updated"
+msgstr ""
+
+#: views.py:524
+msgid "Group deleted"
+msgstr ""
+
+#: views.py:537
+msgid "Owner cannot leave the group. Delete it or transfer ownership."
+msgstr ""
+
+#: views.py:542
+msgid "You left the group"
+msgstr ""
+
+#: templates/admin_audit.html:5 templates/base.html:85
+msgid "Audit logs"
+msgstr ""
+
+#: templates/admin_audit.html:9 templates/expenses.html:28
+msgid "Date"
+msgstr ""
+
+#: templates/admin_audit.html:10
+msgid "Action"
+msgstr ""
+
+#: templates/admin_audit.html:11 templates/admin_users.html:26
+msgid "User"
+msgstr ""
+
+#: templates/admin_audit.html:12
+msgid "Detalization"
+msgstr ""
+
+#: templates/admin_categories.html:4 templates/base.html:82
+msgid "Categories"
+msgstr ""
+
+#: templates/admin_categories.html:12
+msgid "New category"
+msgstr ""
+
+#: templates/admin_categories.html:16
+msgid "Add"
+msgstr ""
+
+#: templates/admin_categories.html:25 templates/admin_users.html:9
+msgid "Name"
+msgstr ""
+
+#: templates/admin_categories.html:26
+msgid "Used in expenses (count)"
+msgstr ""
+
+#: templates/admin_categories.html:27 templates/expenses.html:30
+#: templates/group_overview.html:33
+msgid "Actions"
+msgstr ""
+
+#: templates/admin_categories.html:69
+msgid "Category is used"
+msgstr ""
+
+#: templates/admin_users.html:4 templates/base.html:79
+msgid "Users"
+msgstr ""
+
+#: templates/admin_users.html:8
+msgid "ID"
+msgstr ""
+
+#: templates/admin_users.html:10
+msgid "Surname"
+msgstr ""
+
+#: templates/admin_users.html:11 templates/forgot_password.html:10
+#: templates/login.html:9 templates/profile.html:21 templates/sign_up.html:9
+msgid "E-mail"
+msgstr ""
+
+#: templates/admin_users.html:12
+msgid "Role"
+msgstr ""
+
+#: templates/admin_users.html:26 templates/profile.html:37
+msgid "Admin"
+msgstr ""
+
+#: templates/base.html:14 templates/base.html:54
+msgid "Home"
+msgstr ""
+
+#: templates/base.html:19
+msgid "Finance Management"
+msgstr ""
+
+#: templates/base.html:34 templates/base.html:47
+msgid "Latvian"
+msgstr ""
+
+#: templates/base.html:36 templates/base.html:43
+msgid "English"
+msgstr ""
+
+#: templates/base.html:58 templates/expenses.html:2 templates/expenses.html:16
+msgid "Expenses"
+msgstr ""
+
+#: templates/base.html:62
+msgid "Profile"
+msgstr ""
+
+#: templates/base.html:74
+msgid "Admin panel"
+msgstr ""
+
+#: templates/base.html:92
+msgid "Logout"
+msgstr ""
+
+#: templates/base.html:97 templates/login.html:2 templates/login.html:6
+#: templates/login.html:23
+msgid "Login"
+msgstr ""
+
+#: templates/base.html:100 templates/sign_up.html:2 templates/sign_up.html:6
+#: templates/sign_up.html:33
+msgid "Sign up"
+msgstr ""
+
+#: templates/dashboard.html:2 templates/dashboard.html:5
+msgid "Dashboard"
+msgstr ""
+
+#: templates/dashboard.html:11 templates/group_overview.html:10
+msgid "My overview"
+msgstr ""
+
+#: templates/dashboard.html:18 templates/group_overview.html:2
+#: templates/group_overview.html:13
+msgid "Group overview"
+msgstr ""
+
+#: templates/dashboard.html:29
+msgid "You have been invited to a group."
+msgstr ""
+
+#: templates/dashboard.html:33
+msgid "Open invitation"
+msgstr ""
+
+#: templates/dashboard.html:45 templates/dashboard.html:112
+msgid "Create group"
+msgstr ""
+
+#: templates/dashboard.html:53
+msgid "Change monthly income"
+msgstr ""
+
+#: templates/dashboard.html:61 templates/profile.html:80
+msgid "Save"
+msgstr ""
+
+#: templates/dashboard.html:71
+msgid "Monthly income"
+msgstr ""
+
+#: templates/dashboard.html:80
+msgid "Spent"
+msgstr ""
+
+#: templates/dashboard.html:89
+msgid "Balance"
+msgstr ""
+
+#: templates/dashboard.html:99
+msgid "Category breakdown (this month)"
+msgstr ""
+
+#: templates/dashboard.html:120
+msgid "Group name"
+msgstr ""
+
+#: templates/dashboard.html:125
+msgid "Invite user email (optional)"
+msgstr ""
+
+#: templates/dashboard.html:132
+msgid "Cancel"
+msgstr ""
+
+#: templates/dashboard.html:135
+msgid "Create"
+msgstr ""
+
+#: templates/expenses.html:6
+msgid "Select by month"
+msgstr ""
+
+#: templates/expenses.html:11
+msgid "Select"
+msgstr ""
+
+#: templates/expenses.html:13
+msgid "Clear"
+msgstr ""
+
+#: templates/expenses.html:19
+msgid "Add expenses"
+msgstr ""
+
+#: templates/expenses.html:26
+msgid "Sum (EUR)"
+msgstr ""
+
+#: templates/expenses.html:27
+msgid "Category"
+msgstr ""
+
+#: templates/expenses.html:29
+msgid "Description"
+msgstr ""
+
+#: templates/forgot_password.html:2
+msgid "Forgot password"
+msgstr ""
+
+#: templates/forgot_password.html:6 templates/login.html:19
+msgid "Forgot password?"
+msgstr ""
+
+#: templates/forgot_password.html:7
+msgid "Enter your email address to which a password reset link will be sent."
+msgstr ""
+
+#: templates/forgot_password.html:15
+msgid "Send"
+msgstr ""
+
+#: templates/group_overview.html:5
+msgid "Group"
+msgstr ""
+
+#: templates/group_overview.html:20
+msgid "You have been invited to join this group."
+msgstr ""
+
+#: templates/group_overview.html:22
+msgid "Accept"
+msgstr ""
+
+#: templates/group_overview.html:25
+msgid "Decline"
+msgstr ""
+
+#: templates/group_overview.html:37
+msgid "Rename"
+msgstr ""
+
+#: templates/group_overview.html:42
+msgid "Delete group"
+msgstr ""
+
+#: templates/group_overview.html:48
+msgid "Leave group"
+msgstr ""
+
+#: templates/group_overview.html:59
+msgid "Total income"
+msgstr ""
+
+#: templates/group_overview.html:68
+msgid "Total spent"
+msgstr ""
+
+#: templates/group_overview.html:77
+msgid "Total balance"
+msgstr ""
+
+#: templates/group_overview.html:87
+msgid "Group category breakdown (this month)"
+msgstr ""
+
+#: templates/group_overview.html:95
+msgid "Charts per member"
+msgstr ""
+
+#: templates/login.html:14 templates/sign_up.html:24
+msgid "Password"
+msgstr ""
+
+#: templates/profile.html:4
+msgid "User profile"
+msgstr ""
+
+#: templates/profile.html:9 templates/sign_up.html:14
+msgid "First name"
+msgstr ""
+
+#: templates/profile.html:15 templates/sign_up.html:19
+msgid "Last name"
+msgstr ""
+
+#: templates/profile.html:28
+msgid "Admin settings"
+msgstr ""
+
+#: templates/profile.html:48
+msgid "Active user"
+msgstr ""
+
+#: templates/profile.html:55
+msgid "Change password"
+msgstr ""
+
+#: templates/profile.html:58
+msgid "Old password"
+msgstr ""
+
+#: templates/profile.html:65 templates/reset_password.html:9
+msgid "New password"
+msgstr ""
+
+#: templates/profile.html:72
+msgid "New password again"
+msgstr ""
+
+#: templates/profile.html:86
+msgid "Back"
+msgstr ""
+
+#: templates/reset_password.html:2 templates/reset_password.html:6
+#: templates/reset_password.html:19
+msgid "Reset password"
+msgstr ""
+
+#: templates/reset_password.html:14
+msgid "New password (again)"
+msgstr ""
+
+#: templates/sign_up.html:29
+msgid "Password (again)"
+msgstr ""
+

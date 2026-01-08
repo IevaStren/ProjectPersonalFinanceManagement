@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3>{{ _("Categories") }}</h3>
+
+<!-- ADD CATEGORY -->
+<form method="post" class="mb-3">
+    <div class="input-group">
+        <input type="text"
+               name="name"
+               class="form-control"
+               placeholder="{{ _('New category') }}"
+               required>
+        <button class="btn btn-success">
+            <i class="bi bi-plus-lg"></i>
+            {{ _("Add") }}
+        </button>
+    </div>
+</form>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>{{ _("Name") }}</th>
+            <th>{{ _("Used in expenses (count)") }}</th>
+            <th>{{ _("Actions") }}</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for c in categories %}
+        <tr>
+
+            <!-- EDIT -->
+            <form method="post"
+                  action="{{ url_for('views.edit_category', cat_id=c.id) }}">
+
+                <td>{{ c.id }}</td>
+
+                <td>
+                    <input type="text"
+                           name="name"
+                           value="{{ c.name }}"
+                           class="form-control">
+                </td>
+
+                <td class="text-center">
+                    {{ c.expenses|length }}
+                </td>
+
+                <td class="text-nowrap">
+                    <button class="btn btn-sm btn-primary">
+                      <i class="bi bi-floppy2" ></i>
+                    </button>
+            </form>
+
+            <!-- DELETE -->
+            {% if c.expenses|length == 0 %}
+                <form method="post"
+                      action="{{ url_for('views.delete_category', cat_id=c.id) }}"
+                      style="display:inline;">
+                    <button class="btn btn-sm btn-danger">
+                      <i class="bi bi-trash3-fill" style=" color: gainsboro;"></i>
+                    </button>
+                </form>
+            {% else %}
+                <button class="btn btn-sm btn-secondary" disabled
+                        title="{{ _('Category is used') }}">
+                    <i class="bi bi-lock-fill" style="color: #FFBF00"></i>
+                </button>
+            {% endif %}
+                </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
+
