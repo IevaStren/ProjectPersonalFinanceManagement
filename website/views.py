@@ -51,7 +51,7 @@ def edit_expense(expense_id):
     if expense.user_id != current_user.id:
         abort(403)
 
-    #Edits expense
+    # Edits expense
     expense.amount = Decimal(request.form['amount'].replace(",", "."))
     expense.category_id = int(request.form['category_id'])
     expense.expense_date = datetime.strptime(request.form['expense_date'], "%Y-%m-%d").date()
@@ -76,12 +76,12 @@ def delete_expense(expense_id):
     return jsonify(success=True)
 
 
-# checks if current user is admin
+# checks if current user is authenticated and admin
 def admin_required():
     if not current_user.is_authenticated or not current_user.is_admin:
         abort(403)
 
-# Shows all users
+# If admin, Shows all users
 @views.route("/admin/users")
 @login_required
 def admin_users():
@@ -105,13 +105,8 @@ def profile():
         new_password = request.form.get("new_password", "").strip()
         confirm_password = request.form.get("confirm_password", "").strip()
 
-        #validation checks if user changes password. If ok, changes password
+        #validation checks if user changes password. If ok, change password
         if old_password or new_password or confirm_password:
-            print(old_password)
-            print(check_password_hash(current_user.password, old_password))
-            print(new_password)
-            print(confirm_password)
-            print("DEBUG regex special:", re.search(r"[^\w\s]", new_password))
             if not old_password or not new_password or not confirm_password:
                 flash(_("All password fields are required"), "error")
                 return redirect(url_for("views.profile"))
@@ -125,17 +120,16 @@ def profile():
             if new_password != confirm_password:
                 flash(_("Passwords do not match"), "error")
                 return redirect(url_for("views.profile"))
-            
-
+        
             current_user.password = generate_password_hash(new_password)
+            
         db.session.commit()
         flash(_("Profile updated successfully"), "success")
         return redirect(url_for("views.profile"))
 
     return render_template("profile.html", user=current_user)
 
-
-
+# 
 @views.route("/admin/user/<int:user_id>", methods=["GET", "POST"])
 @login_required
 def admin_user_profile(user_id):
@@ -161,7 +155,7 @@ def admin_user_profile(user_id):
         is_admin_view=True
     )
 
-
+# Shows audit logs
 @views.route("/admin/audit")
 @login_required
 def audit_logs():
@@ -184,7 +178,6 @@ def set_language(lang):
         db.session.commit()
 
     return redirect(request.referrer or url_for("views.dashboard"))
-
 
 
 @views.route("/admin/categories", methods=["GET", "POST"])
@@ -283,16 +276,13 @@ def dashboard():
     today = datetime.today()
     start, end = month_range(today)
 
-    personal_expenses = (
-        Expenses.query
-        .filter(
-            Expenses.user_id == current_user.id,
-            Expenses.expense_date >= start,
-            Expenses.expense_date < end
-        )
-        .all()
-    )
+    #selects all expenses that are in this months range
+    personal_expenses = (Expenses.query.filter(
+        Expenses.user_id == current_user.id,
+        Expenses.expense_date >= start,
+        Expenses.expense_date < end).all())
 
+    
     personal_income = Decimal(current_user.monthly_income or 0)
     personal_spent = sum(Decimal(e.amount) for e in personal_expenses)
     personal_remaining = personal_income - personal_spent
@@ -362,7 +352,9 @@ def create_group():
     current_user.group_budget_id = group.id
     db.session.commit()
 
-    if email:
+    if not email:
+        flash(_("E-mail field is mandatory"), "error")
+    else:
         token = secrets.token_urlsafe(32)
 
         invite = GroupInvitation(
@@ -414,15 +406,10 @@ def group_overview():
     for u in members:
         income = Decimal(u.monthly_income or 0)
 
-        user_expenses = (
-            Expenses.query
-            .filter(
+        user_expenses = (Expenses.query.filter(
                 Expenses.user_id == u.id,
                 Expenses.expense_date >= start,
-                Expenses.expense_date < end
-            )
-            .all()
-        )
+                Expenses.expense_date < end).all())
 
         spent = sum(Decimal(e.amount) for e in user_expenses)
         remaining = income - spent
