@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify, abort, session
+from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify, abort, session, current_app
 from flask_login import login_required, current_user
 from flask_babel import _
 from datetime import datetime
@@ -257,7 +257,7 @@ def send_invite_email(email, token):
 
     msg = Message(
         _("Group invitation"),
-        sender=os.getenv["MAIL_USERNAME"],
+        sender=current_app.config["MAIL_USERNAME"],
         recipients=[email],
         body=f"""
 You have been invited to join a group.
