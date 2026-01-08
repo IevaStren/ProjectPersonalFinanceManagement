@@ -69,17 +69,18 @@
       <input type="password" name="confirm_password" class="form-control">
     </div>
   {% endif %}
-
-  <button class="btn btn-primary mt-3">
-    {{ _("Save") }}
-  </button>
-
-  {% if is_admin_view %}
-    <a href="{{ url_for('views.admin_users') }}"
-       class="btn btn-secondary mt-3">
-       {{ _("Back") }}
-    </a>
-  {% endif %}
+    <div class="buttons box">
+      <button class="btn btn-primary mt-3">
+        {{ _("Save") }}
+      </button>
+    
+      {% if is_admin_view %}
+        <a href="{{ url_for('views.admin_users') }}"
+           class="btn btn-secondary mt-3">
+           {{ _("Back") }}
+        </a>
+      {% endif %}
+    </div>
 
 </form>
 
