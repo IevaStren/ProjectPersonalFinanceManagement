@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-07 20:24+0200\n"
+"POT-Creation-Date: 2026-01-08 12:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Password field is mandatory"
 msgstr ""
 
-#: auth.py:22 views.py:114
+#: auth.py:22
 msgid "Password must be at least 8 characters long"
 msgstr ""
 
@@ -53,148 +53,152 @@ msgstr ""
 msgid "First name field is mandatory"
 msgstr ""
 
-#: auth.py:73 auth.py:188 views.py:110
+#: auth.py:74
+msgid "Passwords field is empty"
+msgstr ""
+
+#: auth.py:76 auth.py:196 views.py:126
 msgid "Passwords do not match"
 msgstr ""
 
-#: auth.py:75
+#: auth.py:78
 msgid "User with this email already exists"
 msgstr ""
 
-#: auth.py:97
+#: auth.py:101
 msgid "Registration successful"
 msgstr ""
 
-#: auth.py:115
+#: auth.py:119 auth.py:130
 msgid "Invalid email or password"
 msgstr ""
 
-#: auth.py:122
+#: auth.py:126
 #, python-format
 msgid "Account is deactivated. Please contact administrator: %(email)s"
 msgstr ""
 
-#: auth.py:157
+#: auth.py:165
 msgid "Password reset"
 msgstr ""
 
-#: auth.py:157
+#: auth.py:165
 msgid "To reset your password, open this link:"
 msgstr ""
 
-#: auth.py:160
+#: auth.py:168
 msgid "If the email exists, a reset link has been sent."
 msgstr ""
 
-#: auth.py:172
+#: auth.py:180
 msgid "The reset link is invalid or expired."
 msgstr ""
 
-#: auth.py:196
+#: auth.py:204
 msgid "Password successfully changed"
 msgstr ""
 
-#: auth.py:206
+#: auth.py:214
 msgid "You have been logged out"
 msgstr ""
 
-#: views.py:38
-msgid "Expense added successfully"
-msgstr ""
-
-#: views.py:59
+#: views.py:61
 msgid "Expense updated"
 msgstr ""
 
-#: views.py:106
+#: views.py:116
+msgid "All password fields are required"
+msgstr ""
+
+#: views.py:119
 msgid "Old password is incorrect"
 msgstr ""
 
-#: views.py:120
+#: views.py:132
 msgid "Profile updated successfully"
 msgstr ""
 
-#: views.py:145
+#: views.py:156
 msgid "User updated successfully"
 msgstr ""
 
-#: views.py:183
+#: views.py:194
 msgid "You don't have access to this page"
 msgstr ""
 
-#: views.py:194
+#: views.py:205
 msgid "Category added"
 msgstr ""
 
-#: views.py:196
+#: views.py:207
 msgid "Category already exists"
 msgstr ""
 
-#: views.py:218
+#: views.py:229
 msgid "Category updated"
 msgstr ""
 
-#: views.py:232
+#: views.py:243
 msgid "Category is used and cannot be deleted"
 msgstr ""
 
-#: views.py:238
+#: views.py:249
 msgid "Category deleted"
 msgstr ""
 
-#: views.py:254
+#: views.py:265
 msgid "Group invitation"
 msgstr ""
 
-#: views.py:292 views.py:421
+#: views.py:303 views.py:432
 msgid "Unknown"
 msgstr ""
 
-#: views.py:322
+#: views.py:333
 msgid "Invalid income format"
 msgstr ""
 
-#: views.py:327
+#: views.py:338
 msgid "Income must be greater or equal to 0"
 msgstr ""
 
-#: views.py:332
+#: views.py:343
 msgid "Income updated successfully"
 msgstr ""
 
-#: views.py:368
+#: views.py:379
 msgid "Group created"
 msgstr ""
 
-#: views.py:384
+#: views.py:395
 msgid "You are not in a group"
 msgstr ""
 
-#: views.py:470
+#: views.py:481
 msgid "You joined the group"
 msgstr ""
 
-#: views.py:483
+#: views.py:494
 msgid "Invitation declined"
 msgstr ""
 
-#: views.py:497
+#: views.py:508
 msgid "Group name is required"
 msgstr ""
 
-#: views.py:502
+#: views.py:513
 msgid "Group updated"
 msgstr ""
 
-#: views.py:524
+#: views.py:535
 msgid "Group deleted"
 msgstr ""
 
-#: views.py:537
+#: views.py:548
 msgid "Owner cannot leave the group. Delete it or transfer ownership."
 msgstr ""
 
-#: views.py:542
+#: views.py:553
 msgid "You left the group"
 msgstr ""
 
@@ -343,7 +347,7 @@ msgstr ""
 msgid "Change monthly income"
 msgstr ""
 
-#: templates/dashboard.html:61 templates/profile.html:80
+#: templates/dashboard.html:61 templates/profile.html:74
 msgid "Save"
 msgstr ""
 
@@ -503,15 +507,15 @@ msgstr ""
 msgid "Old password"
 msgstr ""
 
-#: templates/profile.html:65 templates/reset_password.html:9
+#: templates/profile.html:63 templates/reset_password.html:9
 msgid "New password"
 msgstr ""
 
-#: templates/profile.html:72
+#: templates/profile.html:68
 msgid "New password again"
 msgstr ""
 
-#: templates/profile.html:86
+#: templates/profile.html:80
 msgid "Back"
 msgstr ""
 
