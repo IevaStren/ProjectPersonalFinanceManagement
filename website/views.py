@@ -352,10 +352,7 @@ def create_group():
     current_user.group_budget_id = group.id
     db.session.commit()
 
-    if not email:
-        flash(_("E-mail field is mandatory"), "error")
-        return redirect(url_for("views.group/create"))
-    else:
+    if email:
         token = secrets.token_urlsafe(32)
 
         invite = GroupInvitation(
@@ -369,7 +366,7 @@ def create_group():
 
         send_invite_email(email, token)
 
-        flash(_("Group created"), "success")
+    flash(_("Group created"), "success")
     return redirect(url_for("views.dashboard"))
 
 @views.route("/group", methods=["GET"])
