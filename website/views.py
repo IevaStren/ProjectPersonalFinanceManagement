@@ -257,8 +257,8 @@ def send_invite_email(email, token):
 
     msg = Message(
         _("Group invitation"),
-        recipients=[email],
         sender=os.getenv["MAIL_USERNAME"],
+        recipients=[email],
         body=f"""
 You have been invited to join a group.
 
