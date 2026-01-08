@@ -7,6 +7,7 @@ import secrets
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_mail import Message
 import re
+import os
 from . import db, mail
 from .models import Expenses, Category, User, AuditLogs, GroupBudget, GroupInvitation
 from . import db
