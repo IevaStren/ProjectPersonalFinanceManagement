@@ -354,6 +354,7 @@ def create_group():
 
     if not email:
         flash(_("E-mail field is mandatory"), "error")
+        return redirect(url_for("views.group/create"))
     else:
         token = secrets.token_urlsafe(32)
 
@@ -368,7 +369,7 @@ def create_group():
 
         send_invite_email(email, token)
 
-    flash(_("Group created"), "success")
+        flash(_("Group created"), "success")
     return redirect(url_for("views.dashboard"))
 
 @views.route("/group", methods=["GET"])
