@@ -257,6 +257,7 @@ def send_invite_email(email, token):
     msg = Message(
         _("Group invitation"),
         recipients=[email],
+        sender=current_app.config["MAIL_USERNAME"],
         body=f"""
 You have been invited to join a group.
 
