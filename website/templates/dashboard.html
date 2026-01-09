@@ -4,7 +4,7 @@
 
 <h3 class="mb-4">{{ _("Dashboard") }}</h3>
 
-<!-- Tabs -->
+<!-- Tabs - my overview and group overview -->
 <ul class="nav nav-tabs mb-3">
   <li class="nav-item">
     <a class="nav-link active" href="{{ url_for('views.dashboard') }}">
@@ -21,7 +21,7 @@
   {% endif %}
 </ul>
 
-<!-- Invitations notification -->
+<!-- Invitation notifications -->
 {% if invitations and not group %}
   {% for inv in invitations %}
   <div class="alert alert-info d-flex justify-content-between align-items-center">
@@ -34,17 +34,6 @@
     </a>
   </div>
   {% endfor %}
-{% endif %}
-
-<!-- Create group button under income -->
-{% if not group %}
-  <div class="create-group" style="padding-bottom: 30px;">
-    <button class="btn btn-primary mt-3" 
-          data-toggle="modal"
-          data-target="#createGroupModal">
-    {{ _("Create group") }}
-    </button>
-  </div>
 {% endif %}
 
 <!-- Change monthly income -->
@@ -63,10 +52,21 @@
   </div>
 </div>
 
-<!-- 3 cards -->
+<!-- Create group button -->
+{% if not group %}
+  <div class="create-group" style="padding-bottom: 30px;">
+    <button class="btn btn-primary mt-3" 
+          data-toggle="modal"
+          data-target="#createGroupModal">
+    {{ _("Create group") }}
+    </button>
+  </div>
+{% endif %}
+
+<!-- Cards  - montly income, spent, remaining-->
 <div class="row mb-4 box">
   <div class="col-md-4">
-    <div class="card text-white bg-success">
+    <div class="card text-white" style="b" >
       <div class="card-body">
         <h5 class="card-title">{{ _("Monthly income") }}</h5>
         <p class="card-text">{{ personal_income }} €</p>
