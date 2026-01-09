@@ -2,6 +2,7 @@
 {% block title %}{{ _("Expenses") }}{% endblock %}
 
 {% block content %}
+<!-- TODO
 <form method="get" class="form-inline mb-3">
   <label class="mr-2">{{ _("Select by month") }}</label>
   <input type="month"
@@ -12,6 +13,8 @@
   <a href="{{ url_for('views.expenses_view') }}"
      class="btn btn-outline-secondary btn-sm ml-2">{{ _("Clear") }}</a>
 </form>
+-->
+
 <div class="d-flex justify-content-between mb-3">
   <h3>{{ _("Expenses") }}</h3>
   <button class="btn btn-primary btn-sm" onclick="showNewRow()">
