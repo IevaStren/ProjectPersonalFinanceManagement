@@ -130,7 +130,7 @@ def profile():
 
     return render_template("profile.html", user=current_user)
 
-# 
+# Shows and edits users profile - Admin view
 @views.route("/admin/user/<int:user_id>", methods=["GET", "POST"])
 @login_required
 def admin_user_profile(user_id):
@@ -170,17 +170,17 @@ def set_language(lang):
     if lang not in ["en", "lv"]:
         return redirect(request.referrer or url_for("views.dashboard"))
 
-    # Saglabā sesijā
+    # Saves language in session
     session["lang"] = lang
 
-    # Ja lietotājs ielogots – saglabā DB
+    # If user is authenticated saves language in DB
     if current_user.is_authenticated:
         current_user.language = lang
         db.session.commit()
 
     return redirect(request.referrer or url_for("views.dashboard"))
 
-
+# Shows categories and adds category
 @views.route("/admin/categories", methods=["GET", "POST"])
 @login_required
 def admin_categories():
@@ -209,7 +209,7 @@ def admin_categories():
         categories=categories
     )
 
-
+#Edit category name
 @views.route("/admin/categories/<int:cat_id>", methods=["POST"])
 @login_required
 def edit_category(cat_id):
@@ -224,7 +224,7 @@ def edit_category(cat_id):
 
     return redirect(url_for("views.admin_categories"))
 
-
+#Delete category
 @views.route("/admin/categories/<int:cat_id>/delete", methods=["POST"])
 @login_required
 def delete_category(cat_id):
@@ -243,7 +243,7 @@ def delete_category(cat_id):
     flash(_("Category deleted"), "success")
     return redirect(url_for("views.admin_categories"))
 
-
+#calculates this months range. Start is this months 1st date and end is next months 1st date
 def month_range(dt: datetime):
     start = datetime(dt.year, dt.month, 1).date()
     if dt.month == 12:
@@ -252,9 +252,12 @@ def month_range(dt: datetime):
         end = datetime(dt.year, dt.month + 1, 1).date()
     return start, end
 
+#sends invitation email
 def send_invite_email(email, token):
+    #invitation link
     link = url_for("auth.login", _external=True) + f"?invite={token}"
 
+    # Invitation Message to join group
     msg = Message(
         _("Group invitation"),
         sender=current_app.config["MAIL_USERNAME"],
@@ -268,10 +271,12 @@ Click the link below to accept:
 If you do not have an account, register first using this email.
 """
     )
+
+    #sends message
     mail.send(msg)
 
 
-
+# home page
 @views.route("/")
 @login_required
 def dashboard():
@@ -284,17 +289,18 @@ def dashboard():
         Expenses.expense_date >= start,
         Expenses.expense_date < end).all())
 
-    
+    #calculates income spent and balance
     personal_income = Decimal(current_user.monthly_income or 0)
     personal_spent = sum(Decimal(e.amount) for e in personal_expenses)
     personal_remaining = personal_income - personal_spent
 
     personal_chart = {}
+    # for each expense gets categories and expense amount and adds them to personal chart
     for e in personal_expenses:
-        # e.category pieejams, ja attiecība ir sakārtota
         name = e.category.name if e.category else _("Unknown")
         personal_chart[name] = personal_chart.get(name, Decimal("0")) + Decimal(e.amount)
-
+        
+    # selects all pending group invitations
     invitations = GroupInvitation.query.filter_by(
         to_user_email=current_user.email,
         status="pending"
@@ -336,7 +342,7 @@ def update_montly_income():
     return redirect(url_for("views.dashboard"))
 
 
-
+# function to create group
 @views.route("/group/create", methods=["POST"])
 @login_required
 def create_group():
@@ -355,6 +361,7 @@ def create_group():
     db.session.commit()
 
     if email:
+        # generates url safe token
         token = secrets.token_urlsafe(32)
 
         invite = GroupInvitation(
@@ -371,18 +378,20 @@ def create_group():
     flash(_("Group created"), "success")
     return redirect(url_for("views.dashboard"))
 
+#Group overview 
 @views.route("/group", methods=["GET"])
 @login_required
 def group_overview():
     invite_id = request.args.get("invite_id", type=int)
 
     invite = None
+    # shows group invite
     if invite_id:
         invite = GroupInvitation.query.get_or_404(invite_id)
         if invite.to_user_email != current_user.email:
             abort(403)
 
-    # Ja lietotājs vēl nav grupā un nav invite – aizsūtam uz my overview
+    # if user is not in a group or doesn't have invite, then redirects to my overview
     if not current_user.group_budget_id and not invite:
         flash(_("You are not in a group"), "warning")
         return redirect(url_for("views.dashboard"))
@@ -395,14 +404,12 @@ def group_overview():
 
     members = User.query.filter_by(group_budget_id=group.id).all()
 
-    # Aprēķini: katram atsevišķi + kopā
     per_user = []
     total_income = Decimal("0")
     total_spent = Decimal("0")
-
-    # Kopīgais chart (summa pa kategorijām visai grupai)
     group_chart = {}
 
+    # for each member in the group, gets income, and expenses this month
     for u in members:
         income = Decimal(u.monthly_income or 0)
 
@@ -410,11 +417,13 @@ def group_overview():
                 Expenses.user_id == u.id,
                 Expenses.expense_date >= start,
                 Expenses.expense_date < end).all())
-
+        
+        # sum and remainig money
         spent = sum(Decimal(e.amount) for e in user_expenses)
         remaining = income - spent
 
         user_chart = {}
+        # for each expense gets category names and creates user and group charts
         for e in user_expenses:
             cname = e.category.name if e.category else _("Unknown")
             user_chart[cname] = user_chart.get(cname, Decimal("0")) + Decimal(e.amount)
@@ -431,7 +440,7 @@ def group_overview():
             "chart": {k: float(v) for k, v in user_chart.items()}
         })
 
-
+        #calculates groups total income and total spent and remaining
         total_income += income
         total_spent += spent
 
@@ -451,7 +460,7 @@ def group_overview():
     )
 
 
-
+# group member accepts invite
 @views.route("/group/invite/<int:invite_id>/accept", methods=["POST"])
 @login_required
 def accept_invite(invite_id):
@@ -468,7 +477,7 @@ def accept_invite(invite_id):
     flash(_("You joined the group"), "success")
     return redirect(url_for("views.group_overview"))
 
-
+# group member declains invite
 @views.route("/group/invite/<int:invite_id>/decline", methods=["POST"])
 @login_required
 def decline_invite(invite_id):
@@ -482,11 +491,12 @@ def decline_invite(invite_id):
     return redirect(url_for("views.dashboard"))
 
 
-
+# Function to rename group
 @views.route("/group/<int:group_id>/edit", methods=["POST"])
 @login_required
 def edit_group(group_id):
     group = GroupBudget.query.get_or_404(group_id)
+    # checks if user is group owner
     if group.owner_id != current_user.id:
         abort(403)
 
@@ -501,19 +511,21 @@ def edit_group(group_id):
     return redirect(url_for("views.group_overview"))
 
 
-
+# Function that deletes group 
 @views.route("/group/<int:group_id>/delete", methods=["POST"])
 @login_required
 def delete_group(group_id):
     group = GroupBudget.query.get_or_404(group_id)
+    #checks if user is group owner
     if group.owner_id != current_user.id:
         abort(403)
 
+    # changes group members group_budget_id to None
     members = User.query.filter_by(group_budget_id=group.id).all()
     for u in members:
         u.group_budget_id = None
 
-    # arī pending invites var izdzēst vai atstāt – labāk izdzēst
+    # deletes group invitation
     GroupInvitation.query.filter_by(group_id=group.id).delete()
 
     db.session.delete(group)
@@ -523,17 +535,17 @@ def delete_group(group_id):
     return redirect(url_for("views.dashboard"))
 
 
-
+# Groups user can leave the group
 @views.route("/group/leave", methods=["POST"])
 @login_required
 def leave_group():
     if not current_user.group_budget_id:
         return redirect(url_for("views.dashboard"))
 
-    group = GroupBudget.query.get(current_user.group_budget_id)
-    if group and group.owner_id == current_user.id:
-        flash(_("Owner cannot leave the group. Delete it or transfer ownership."), "error")
-        return redirect(url_for("views.group_overview"))
+    #group = GroupBudget.query.get(current_user.group_budget_id)
+    #if group and group.owner_id == current_user.id:
+    #   flash(_("Owner cannot leave the group. Delete it or transfer ownership."), "error")
+    #   return redirect(url_for("views.group_overview"))
 
     current_user.group_budget_id = None
     db.session.commit()
